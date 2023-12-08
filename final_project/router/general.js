@@ -26,8 +26,7 @@ function getBooks() {
         resolve(books);
     });
 }
- 
-// Get the book list available in the shop
+
 public_users.get('/', async function (req, res) {
     try {
       const bks = await getBooks();
@@ -49,7 +48,7 @@ function getByISBN(isbn) {
         }
     })
 }
-// Get book details based on ISBN
+
 public_users.get('/isbn/:isbn', function (req, res) {
     getByISBN(req.params.isbn)
     .then(
@@ -58,7 +57,7 @@ public_users.get('/isbn/:isbn', function (req, res) {
     );
 });
   
-// Get book details based on author
+
 public_users.get('/author/:author',function (req, res) {
     const author = req.params.author;
     getBooks()
@@ -67,7 +66,6 @@ public_users.get('/author/:author',function (req, res) {
     .then((filteredBooks) => res.send(filteredBooks));
 });
 
-// Get all books based on title
 public_users.get('/title/:title',function (req, res) {
     const title = req.params.title;
     getBooks()
@@ -76,7 +74,7 @@ public_users.get('/title/:title',function (req, res) {
     .then((filteredBooks) => res.send(filteredBooks));
 });
 
-//  Get book review
+
 public_users.get('/review/:isbn',function (req, res) {
   const isbn = req.params.isbn;
   getByISBN(req.params.isbn)
